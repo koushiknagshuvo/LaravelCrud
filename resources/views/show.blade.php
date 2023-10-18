@@ -42,7 +42,7 @@
                     <tr>
                         <th scope="row">{{ $record->id }}</th>
                         <td>{{ $record->name }}</td>
-                        <td><img src="storages/images/{{ $record->image }}" alt="CRUD_Image" height="100px"
+                        <td><img src="storage/images/{{ $record->image }}" alt="CRUD_Image" height="100px"
                                 width="100px"></td>
                         <td>
 
@@ -53,7 +53,7 @@
                                 @endphp
 
                                 @foreach ($imageNames as $imageName)
-                                    <img src="storages/images/{{ $imageName }}" alt="CRUD_Image" height="100px"
+                                    <img src="storage/images/{{ $imageName }}" alt="CRUD_Image" height="100px"
                                         width="100px">
                                 @endforeach
                             @endif

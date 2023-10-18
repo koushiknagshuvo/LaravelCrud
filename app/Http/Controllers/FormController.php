@@ -29,7 +29,7 @@ class FormController extends Controller
             $image = $request->file("image");
             $ext = $image->getClientOriginalExtension();
             $imageName = time() . "." . $ext;
-            $image->move("storages/images", $imageName);
+            $image->move("storage/images", $imageName);
             $data->image = $imageName;
         }
 
@@ -47,7 +47,7 @@ class FormController extends Controller
             foreach ($request->file("images") as $image) {
                 $ext = $image->getClientOriginalExtension();
                 $imageName = time() . "-" . uniqid() . "." . $ext; // Use uniqid to ensure unique filenames
-                $image->move("storages/images", $imageName); // Use 'storage' instead of 'storages'
+                $image->move("storage/images", $imageName); // Use 'storage' instead of 'storages'
 
                 $imageNames[] = $imageName; // Store each image name in an array
             }
@@ -74,7 +74,7 @@ class FormController extends Controller
         if ($form) {
             // Check if there is an associated image file
             if (!empty($form->image)) {
-                $imagePath = public_path('storages/images/' . $form->image);
+                $imagePath = public_path('storage/images/' . $form->image);
 
                 // Check if the image file exists and then delete it
                 if (file_exists($imagePath)) {
@@ -86,17 +86,17 @@ class FormController extends Controller
             $form->delete();
         }
         return back();
-
-
     }
 
-    function edit($id){
+    function edit($id)
+    {
         $data = Form::find($id);
         return view("edit_form", compact("data"));
     }
 
 
-    function update_data(Request $request, $id){
+    function update_data(Request $request, $id)
+    {
         $data = Form::find($id);
 
         $data->name = $request->input("name");
@@ -112,7 +112,7 @@ class FormController extends Controller
             $image = $request->file("image");
             $ext = $image->getClientOriginalExtension();
             $imageName = time() . "." . $ext;
-            $image->move("storages/images", $imageName);
+            $image->move("storage/images", $imageName);
             $data->image = $imageName;
         }
         $data->save();
